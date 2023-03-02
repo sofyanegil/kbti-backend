@@ -5,8 +5,8 @@
  * file.
  */
 
-import Env from '@ioc:Adonis/Core/Env'
-import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
+import Env from "@ioc:Adonis/Core/Env";
+import { DatabaseConfig } from "@ioc:Adonis/Lucid/Database";
 
 const databaseConfig: DatabaseConfig = {
   /*
@@ -19,7 +19,7 @@ const databaseConfig: DatabaseConfig = {
   | file.
   |
   */
-  connection: Env.get('DB_CONNECTION'),
+  connection: Env.get("DB_CONNECTION"),
   // connection: Application.inDev ? 'sqlite' : 'mysql',
   connections: {
     /*
@@ -34,13 +34,13 @@ const databaseConfig: DatabaseConfig = {
     |
     */
     mysql: {
-      client: 'mysql',
+      client: "mysql",
       connection: {
-        host: Env.get('MYSQL_HOST'),
-        port: Env.get('MYSQL_PORT'),
-        user: Env.get('MYSQL_USER'),
-        password: Env.get('MYSQL_PASSWORD', ''),
-        database: Env.get('MYSQL_DB_NAME'),
+        host: Env.get("MYSQL_HOST"),
+        port: Env.get("MYSQL_PORT"),
+        user: Env.get("MYSQL_USER"),
+        password: Env.get("MYSQL_PASSWORD", ""),
+        database: Env.get("MYSQL_DB_NAME"),
       },
       migrations: {
         naturalSort: true,
@@ -48,10 +48,28 @@ const databaseConfig: DatabaseConfig = {
       healthCheck: false,
       debug: false,
       seeders: {
-        paths: ['./database/seeders/MainSeeder']
-      }
+        paths: ["./database/seeders/MainSeeder"],
+      },
+    },
+    pg: {
+      client: "pg",
+      connection: {
+        host: Env.get("PG_HOST"),
+        port: Env.get("PG_PORT"),
+        user: Env.get("PG_USER"),
+        password: Env.get("PG_PASSWORD", ""),
+        database: Env.get("PG_DB_NAME"),
+      },
+      migrations: {
+        naturalSort: true,
+      },
+      healthCheck: false,
+      debug: false,
+      seeders: {
+        paths: ["./database/seeders/MainSeeder"],
+      },
     },
   },
-}
+};
 
-export default databaseConfig
+export default databaseConfig;
